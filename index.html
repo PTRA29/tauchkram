@@ -13,30 +13,44 @@
             text-align: center;
         }
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: auto;
             padding: 20px;
+        }
+        p.info {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
         .item {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 20px;
-            margin: 20px 0;
+            width: 30%;
+            min-width: 280px;
+            text-align: center;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
+            cursor: pointer;
         }
         .item:hover {
             transform: scale(1.05);
         }
+        .highlight {
+            border: 2px solid #ffcc00;
+            box-shadow: 0px 4px 20px rgba(255, 204, 0, 0.8);
+        }
         .item img {
-            width: 200px;
-            height: 150px;
+            width: 100%;
+            height: 180px;
             object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s;
-        }
-        .item img:hover {
-            transform: scale(1.1);
         }
         .price {
             font-size: 1.5em;
@@ -44,39 +58,38 @@
             color: #ffcc00;
         }
     </style>
+    <script>
+        function goToPage(url) {
+            window.location.href = url;
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Diving Equipment for Sale</h1>
+        <p class="info">Click on any item to see more details and pictures.</p>
         
-        <div class="item">
-            <h2>Sidewinder (CCR)</h2>
-            <a href="sidewinder.html">
-                <img src="Fotos/Sidewinder/IMG_6619.jpg" alt="Sidewinder CCR">
-            </a>
-            <p><strong>Manufacturer:</strong> KISS</p>
-            <p class="price">CHF 5500</p>
-            <a href="sidewinder.html">More details</a>
-        </div>
-
-        <div class="item">
-            <h2>Inspiration XPD (CCR)</h2>
-            <a href="inspiration.html">
-                <img src="Fotos/Sidewinder/IMG_6621.jpg" alt="Inspiration XPD">
-            </a>
-            <p><strong>Manufacturer:</strong> AP</p>
-            <p class="price">CHF 5000</p>
-            <a href="inspiration.html">More details</a>
-        </div>
-
-        <div class="item">
-            <h2>Future 1000 (Scooter)</h2>
-            <a href="future.html">
+        <div class="items">
+            <div class="item highlight" onclick="goToPage('future.html')">
                 <img src="Fotos/SeacraftFuture/IMG_6610.jpg" alt="Future 1000 Scooter">
-            </a>
-            <p><strong>Manufacturer:</strong> Seacraft</p>
-            <p class="price">CHF 8500</p>
-            <a href="future.html">More details</a>
+                <h2>Future 1000 (Scooter)</h2>
+                <p><strong>Manufacturer:</strong> Seacraft</p>
+                <p class="price">CHF 8500</p>
+            </div>
+
+            <div class="item" onclick="goToPage('sidewinder.html')">
+                <img src="Fotos/Sidewinder/IMG_6619.jpg" alt="Sidewinder CCR">
+                <h2>Sidewinder (CCR)</h2>
+                <p><strong>Manufacturer:</strong> KISS</p>
+                <p class="price">CHF 5500</p>
+            </div>
+
+            <div class="item" onclick="goToPage('inspiration.html')">
+                <img src="Fotos/Sidewinder/IMG_6621.jpg" alt="Inspiration XPD">
+                <h2>Inspiration XPD (CCR)</h2>
+                <p><strong>Manufacturer:</strong> AP</p>
+                <p class="price">CHF 5000</p>
+            </div>
         </div>
     </div>
 </body>
