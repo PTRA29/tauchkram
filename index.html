@@ -1,66 +1,93 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Meine Tauchausrüstung</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
-    }
-    thead {
-      background: #f0f0f0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diving Equipment for Sale</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #002f4b, #dc4225);
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .item:hover {
+            transform: scale(1.05);
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 10px;
+            padding: 10px;
+        }
+        .carousel img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            scroll-snap-align: center;
+            transition: transform 0.3s;
+        }
+        .carousel img:hover {
+            transform: scale(1.1);
+        }
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Diving Equipment for Sale</h1>
+        
+        <div class="item">
+            <h2>Sidewinder (CCR)</h2>
+            <p><strong>Manufacturer:</strong> KISS</p>
+            <p class="price">CHF 5500</p>
+            <div class="carousel">
+                <img src="Fotos/sidewinder1.jpg" alt="Sidewinder CCR">
+                <img src="Fotos/sidewinder2.jpg" alt="Sidewinder CCR">
+            </div>
+        </div>
 
-  <h1>Verkaufsliste Tauchausrüstung</h1>
-  <p>Willkommen in meiner Übersicht. Bei Interesse bitte per E-Mail melden an: 
-     <a href="mailto:deine-email@beispiel.de">deine-email@beispiel.de</a>.
-  </p>
+        <div class="item">
+            <h2>Inspiration XPD (CCR)</h2>
+            <p><strong>Manufacturer:</strong> AP</p>
+            <p><strong>Remarks:</strong> GBOX, xDeep Backplate</p>
+            <p class="price">CHF 5000</p>
+            <div class="carousel">
+                <img src="Fotos/inspiration1.jpg" alt="Inspiration XPD">
+                <img src="Fotos/inspiration2.jpg" alt="Inspiration XPD">
+            </div>
+        </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Artikel</th>
-        <th>Beschreibung</th>
-        <th>Preis</th>
-        <th>Bilder</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Beispiel-Eintrag (kannst du kopieren und anpassen) -->
-      <tr>
-        <td>Neoprenanzug 5mm</td>
-        <td>Größe M, kaum Gebrauchsspuren, Top-Zustand</td>
-        <td>100 € VB</td>
-        <td>
-          <a href="images/neo1.jpg" target="_blank">Bild 1</a>  
-        </td>
-      </tr>
-      <tr>
-        <td>Blei (2x2kg)</td>
-        <td>Standardblei, gute Qualität</td>
-        <td>15 €</td>
-        <td>
-          <a href="images/blei1.jpg" target="_blank">Bild 1</a>
-        </td>
-      </tr>
-      <!-- etc. -->
-    </tbody>
-  </table>
-
+        <div class="item">
+            <h2>Future 1000 (Scooter)</h2>
+            <p><strong>Manufacturer:</strong> Seacraft</p>
+            <p><strong>Remarks:</strong> Navi, Lampen, EO-Cord</p>
+            <p class="price">CHF 8500</p>
+            <div class="carousel">
+                <img src="Fotos/future1.jpg" alt="Future 1000 Scooter">
+                <img src="Fotos/future2.jpg" alt="Future 1000 Scooter">
+            </div>
+        </div>
+    </div>
 </body>
 </html>
