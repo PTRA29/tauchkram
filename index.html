@@ -1,168 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diving Equipment for Sale</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #002f4b, #dc4225);
-            color: white;
-            text-align: center;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
-        p.info {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        .items {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .item {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            width: 30%;
-            min-width: 280px;
-            text-align: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-        .item:hover {
-            transform: scale(1.05);
-        }
-        .highlight {
-            border: 2px solid #ffcc00;
-            box-shadow: 0px 4px 20px rgba(255, 204, 0, 0.8);
-        }
-        .carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 10px;
-            padding: 10px;
-        }
-        .carousel img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 10px;
-            scroll-snap-align: center;
-            cursor: pointer;
-        }
-        .carousel img:hover {
-            transform: scale(1.2);
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #002f4b, #dc4225);
+        color: white;
+        text-align: center;
+      }
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+      p.info {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+      .items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        width: 30%;
+        min-width: 280px;
+        text-align: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+      .item:hover {
+        transform: scale(1.05);
+      }
+      .highlight {
+        border: 2px solid #ffcc00;
+        box-shadow: 0px 4px 20px rgba(255, 204, 0, 0.8);
+      }
+      .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+        padding: 10px;
+      }
+      .carousel img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        scroll-snap-align: center;
+        cursor: pointer;
+      }
+      .carousel img:hover {
+        transform: scale(1.2);
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+      }
+      .modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+      }
     </style>
     <script>
-        function goToPage(url) {
-            window.location.href = url;
-        }
-        function openModal(imgSrc) {
-            document.getElementById('modal-img').src = imgSrc;
-            document.getElementById('modal').style.display = 'flex';
-        }
+      function goToPage(url) {
+        window.location.href = url;
+      }
+      function openModal(imgSrc) {
+        document.getElementById("modal-img").src = imgSrc;
+        document.getElementById("modal").style.display = "flex";
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Diving Equipment for Sale</h1>
-        <p class="info">Click on any item to see more details and pictures.</p>
-        
-        <div class="items">
-            <div class="item" onclick="goToPage('sidewinder.html')">
-                <img src="Fotos/Sidewinder/IMG_6619.jpg" alt="Sidewinder">
-                <h2>Sidewinder</h2>
-                <p><strong>Manufacturer:</strong> KISS</p>
-                <p class="price">CHF 5500</p>
-            </div>
-            <div class="item" onclick="goToPage('inspiration.html')">
-                <img src="Fotos/Inspiration/inspiration.JPEG" alt="Inspiration XPD">
-                <h2>Inspiration XPD</h2>
-                <p><strong>Manufacturer:</strong> AP Diving</p>
-                <p class="price">CHF 5500</p>
-            </div>
-            <div class="item" onclick="goToPage('future.html')">
-                <img src="Fotos/SeacraftFuture/IMG_6610.jpg" alt="Future 1000">
-                <h2>Future 1000</h2>
-                <p><strong>Manufacturer:</strong> Seacraft</p>
-                <p class="price">CHF 8500</p>
-            </div>
-            <div class="item">
-                <h2>OSTC 2</h2>
-                <p><strong>Manufacturer:</strong> Heinrichs Weikamp</p>
-                <p class="price">CHF 400</p>
-                <div class="carousel">
-                  <img src="Fotos/ostc (2).JPEG" onclick="openModal(this.src)">
-                  <img src="Fotos/ostc (1).JPEG" onclick="openModal(this.src)">
-                  <img src="Fotos/ostc (3).JPEG" onclick="openModal(this.src)">
-              </div>
-            </div>
-            <div class="item">
-                <h2>Boje AP</h2>
-                <p><strong>Manufacturer:</strong> AP Diving</p>
-                <p class="price">CHF 125</p>
-                <div class="carousel">
-                  <img src="Fotos/boje (1).JPEG" onclick="openModal(this.src)">
-                  <img src="Fotos/boje (2).JPEG" onclick="openModal(this.src)">
-              </div>
-            </div>
-            <div class="item">
-              <h2>80 Cuft</h2>
-              <p><strong>Remarks:</strong> without testing</p>
-              <p class="price">CHF 150</p>
-              <div class="carousel">
-                  <img src="Fotos/Tanks/80cuft.JPEG" onclick="openModal(this.src)">
-                  <img src="Fotos/Tanks/80cuft.JPEG (2).JPEG" onclick="openModal(this.src)">
-              </div>           
-              <div class="item">
-                <h2>12 L short</h2>
-                <p><strong>Remarks:</strong> without testing</p>
-                <p class="price">CHF 50</p>
-                <div class="carousel">
-                    <img src="Fotos/Tanks/12lkurz.JPEG" onclick="openModal(this.src)">
-                    <img src="Fotos/Tanks/12lkurz (2).JPEG" onclick="openModal(this.src)">
-                </div>
-            <div class="item">
-              <h2>40 Cuft</h2>
-              <p><strong>Remarks:</strong> without testing</p>
-              <p class="price">CHF 110</p>
-              <div class="carousel">
-                  <img src="Fotos/Tanks/40cuft.JPEG" onclick="openModal(this.src)">
-                  <img src="Fotos/Tanks/40cuft (2).JPEG" onclick="openModal(this.src)">
-              </div>
+      <h1>Diving Equipment for Sale</h1>
+      <p class="info">Click on any picture to see more details or enlarge pictures.</p>
+
+      <div class="items">
+        <div class="item" onclick="goToPage('sidewinder.html')">
+          <img src="Fotos/Sidewinder/IMG_6619.jpg" alt="Sidewinder" />
+          <h2>Sidewinder</h2>
+          <p><strong>Manufacturer:</strong> KISS</p>
+          <p class="price">CHF 5500</p>
         </div>
-    </div>
+        <div class="item" onclick="goToPage('inspiration.html')">
+          <img src="Fotos/Inspiration/inspiration.JPEG" alt="Inspiration XPD" />
+          <h2>Inspiration XPD</h2>
+          <p><strong>Manufacturer:</strong> AP Diving</p>
+          <p class="price">CHF 5500</p>
+        </div>
+        <div class="item" onclick="goToPage('future.html')">
+          <img src="Fotos/SeacraftFuture/IMG_6610.jpg" alt="Future 1000" />
+          <h2>Future 1000</h2>
+          <p><strong>Manufacturer:</strong> Seacraft</p>
+          <p class="price">CHF 8500</p>
+        </div>
+        <div class="item">
+          <h2>OSTC 2</h2>
+          <p><strong>Manufacturer:</strong> Heinrichs Weikamp</p>
+          <p class="price">CHF 400</p>
+          <div class="carousel">
+            <img src="Fotos/ostc (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/ostc (1).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/ostc (3).JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>Heated Gloves</h2>
+          <p><strong>Manufacturer:</strong> Santi</p>
+          <p class="price">CHF 100</p>
+          <div class="carousel">
+            <img src="Fotos/santihand.JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>Thermovalve 303</h2>
+          <p><strong>Manufacturer:</strong> Santi</p>
+          <p><strong>Remarks:</strong> Apeks, new from June 2024</p>
+          <p class="price">CHF 240</p>
+          <div class="carousel">
+            <img src="Fotos/santi303.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/santi303 (2).JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>Boje AP</h2>
+          <p><strong>Manufacturer:</strong> AP Diving</p>
+          <p class="price">CHF 125</p>
+          <div class="carousel">
+            <img src="Fotos/boje (1).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/boje (2).JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>Carbondive 6.8L 300Bar</h2>
+          <p><strong>Remarks:</strong> without testing</p>
+          <p class="price">CHF 290</p>
+          <div class="carousel">
+            <img src="Fotos/Tanks/carbon.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/carbon (2).JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>80 Cuft</h2>
+          <p><strong>Remarks:</strong> without testing</p>
+          <p class="price">CHF 150</p>
+          <div class="carousel">
+            <img src="Fotos/Tanks/80cuft.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/80cuft (2).JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>12L short</h2>
+          <p><strong>Remarks:</strong> without testing</p>
+          <p class="price">CHF 50</p>
+          <div class="carousel">
+            <img src="Fotos/Tanks/12lkurz.JPEG" onclick="openModal(this.src)" />
+            <img  src="Fotos/Tanks/12lkurz (2).JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>12L Steel Sidemount</h2>
+          <p><strong>Remarks:</strong> without testing</p>
+          <p class="price">CHF 250</p>
+          <div class="carousel">
+            <img src="Fotos/Tanks/12l.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/12l (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/12l (3).JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>7L Steel Sidemount</h2>
+          <p><strong>Remarks:</strong> New! Faber light</p>
+          <p class="price">CHF 250</p>
+          <div class="carousel">
+            <img src="Fotos/Tanks/7l.JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>40 Cuft</h2>
+          <p><strong>Remarks:</strong> without testing</p>
+          <p class="price">CHF 110</p>
+          <div class="carousel">
+            <img src="Fotos/Tanks/40cuft.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/40cuft (2).JPEG" onclick="openModal(this.src)"/>
+          </div>
+        </div>
+        <div class="item">
+          <h2>2L Argon bottle</h2>
+          <p><strong>Remarks:</strong> without testing</p>
+          <p class="price">CHF 45</p>
+          <div class="carousel">
+            <img src="Fotos/Tanks/2l.JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+        <div class="item">
+          <h2>1.5L Argon bottle</h2>
+          <p><strong>Remarks:</strong> without testing</p>
+          <p class="price">CHF 45</p>
+          <div class="carousel">
+            <img src="Fotos/Tanks/15.JPEG" onclick="openModal(this.src)" />
+          </div>
+        </div>
+      </div>
     </div>
     <div id="modal" class="modal" onclick="this.style.display='none'">
-        <img id="modal-img" src="">
+      <img id="modal-img" src="" />
     </div>
-</body>
+  </body>
 </html>
