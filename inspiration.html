@@ -11,35 +11,31 @@
             background: linear-gradient(to right, #002f4b, #dc4225);
             color: white;
             text-align: center;
+            padding: 20px;
         }
         .container {
             max-width: 900px;
             margin: auto;
             padding: 20px;
-        }
-        .carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 10px;
-            padding: 10px;
-        }
-        .carousel img {
-            width: 150px;
-            height: 100px;
-            object-fit: cover;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            scroll-snap-align: center;
-            transition: transform 0.3s;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .image-gallery img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
             cursor: pointer;
+            transition: transform 0.3s;
         }
-        .carousel img:hover {
+        .image-gallery img:hover {
             transform: scale(1.1);
-        }
-        .price {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ffcc00;
         }
         .modal {
             display: none;
@@ -61,20 +57,43 @@
         .modal:target {
             display: flex;
         }
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffcc00;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Inspiration XPD (CCR)</h1>
         <p><strong>Manufacturer:</strong> AP</p>
-        <p><strong>Remarks:</strong> GBOX, xDeep Backplate</p>
+        <p><strong>Description:</strong> Die Unit wurde Anfang 2019 gekauft und hat ca. 500 Stunden Laufzeit. Der letzte Service wurde Mitte 2021 durchgeführt, weshalb im Rahmen eines Kaufs empfohlen wird, den Kopf erneut zum Service zu schicken. Über den Preis lässt sich sprechen.</p>
+        <p><strong>Ausstattung:</strong></p>
+        <ul>
+            <li>Vision 2020 Handset</li>
+            <li>Akku-Pack</li>
+            <li>Scrubber Monitor (Tempstick)</li>
+            <li>Backmount Counterlungs</li>
+            <li>GBox Umbau (altes Gehäuse noch vorhanden)</li>
+            <li>AutoAir entfernt (liegt bei)</li>
+            <li>Drei 3L Flaschen für Diluent und Sauerstoff</li>
+            <li>O2-Flaschen mit AP Brackets ausgestattet</li>
+            <li>Anzuggas-Flaschen mit AP Brackets (separat zu verkaufen)</li>
+            <li>Sauerstoffsensoren aus Juli 2024</li>
+            <li>GBox Abdeckung hat einen Riss, beeinträchtigt aber nicht die Funktion</li>
+        </ul>
         <p class="price">CHF 5000</p>
-        <div class="carousel">
-            <a href="#img1"><img src="Fotos/Sidewinder/IMG_6621.jpg" alt="Inspiration XPD"></a>
-            <a href="#img2"><img src="Fotos/Sidewinder/IMG_6622.jpg" alt="Inspiration XPD"></a>
+        <div class="image-gallery">
+            <a href="#img1"><img src="Fotos/Inspiration/IMG_6675.JPEG" alt="Inspiration XPD"></a>
+            <a href="#img2"><img src="Fotos/Inspiration/IMG_6708.JPEG" alt="Inspiration XPD"></a>
+            <a href="#img3"><img src="Fotos/Inspiration/IMG_6724.JPEG" alt="Inspiration XPD"></a>
+            <a href="#img4"><img src="Fotos/Inspiration/IMG_6725.JPEG" alt="Inspiration XPD"></a>
         </div>
-        <div id="img1" class="modal" onclick="this.style.display='none'"><img src="Fotos/Sidewinder/IMG_6621.jpg"></div>
-        <div id="img2" class="modal" onclick="this.style.display='none'"><img src="Fotos/Sidewinder/IMG_6622.jpg"></div>
+        <div id="img1" class="modal" onclick="this.style.display='none'"><img src="Fotos/Inspiration/IMG_6675.JPEG"></div>
+        <div id="img2" class="modal" onclick="this.style.display='none'"><img src="Fotos/Inspiration/IMG_6708.JPEG"></div>
+        <div id="img3" class="modal" onclick="this.style.display='none'"><img src="Fotos/Inspiration/IMG_6724.JPEG"></div>
+        <div id="img4" class="modal" onclick="this.style.display='none'"><img src="Fotos/Inspiration/IMG_6725.JPEG"></div>
         <p><a href="index.html" style="color: white; text-decoration: underline;">Back to overview</a></p>
     </div>
 </body>
