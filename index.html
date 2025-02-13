@@ -31,6 +31,7 @@
         gap: 20px;
       }
       .item {
+        position: relative;
         background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         padding: 20px;
@@ -93,7 +94,7 @@
         padding: 5px 10px;
         border-radius: 5px;
         font-weight: bold;
-        display: block;
+        z-index: 10;
       }
     </style>
     <script>
@@ -112,7 +113,7 @@
       <p class="info">Click on any picture enlarge.</p>
 
       <div class="items">
-        <div class="item reserved">
+        <div class="item">
           <h2>Kiss Sidewinder</h2>
           <p>The total hours on the device are unknown since the mainboard of the dive computer was replaced just before purchase. The unit includes a Petrel 2 without HUD. Several additional components were purchased new recently: 3x O2 sensors, DSV, MAV, and ADV. The ADV is currently disabled due to malfunction but may be repairable under warranty. The device was recently used successfully for diving and performed excellently.</p>
           <p class="price">CHF 5500</p>
@@ -375,7 +376,7 @@
             <img src="Fotos/razerhelm (2).JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
-        <div class="item">
+        <div class="item reserved">
           <h2>Ultrasonic Cleaning Bath</h2>
           <p><strong>Manufacturer:</strong> Emag</p>
           <p><strong>Remarks:</strong> Emmi-20HC, incl. cleaning liquid and regulator service tools</p>
@@ -421,7 +422,7 @@
             <img src="Fotos/nova (1).JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
-        <div class="item">
+        <div class="item reserved">
           <h2>Regulator Suit Gas</h2>
           <p class="price">CHF 25</p>
           <div class="carousel">
@@ -456,7 +457,7 @@
             <img  src="Fotos/Tanks/12lkurz (2).JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
-        <div class="item">
+        <div class="item reserved">
           <h2>12L Steel Sidemount</h2>
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 250 for both</p>
@@ -474,7 +475,7 @@
             <img src="Fotos/Tanks/7l.JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
-        <div class="item">
+        <div class="item reserved">
           <h2>40 Cuft</h2>
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 110</p>
@@ -483,7 +484,7 @@
             <img src="Fotos/Tanks/40cuft (2).JPEG" onclick="openModal(this.src)"/>
           </div>
         </div>
-        <div class="item">
+        <div class="item reserved">
           <h2>2L Argon bottle</h2>
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 45</p>
