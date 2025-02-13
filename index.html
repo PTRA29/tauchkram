@@ -8,64 +8,71 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      /* CSS Reset */
+      * {
+        box-sizing: border-box;
+      }
       body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to right, #002f4b, #dc4225);
-        color: white;
-        text-align: center;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background: #f0f0f0;
+        color: #333;
+        line-height: 1.6;
       }
       .container {
         max-width: 1200px;
-        margin: auto;
+        margin: 0 auto;
         padding: 20px;
       }
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 2em;
+      }
       p.info {
+        text-align: center;
         font-size: 1.2em;
         margin-bottom: 20px;
       }
+      /* Using CSS Grid for a more flexible layout */
       .items {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
       }
       .item {
         position: relative;
-        background: rgba(255, 255, 255, 0.1);
+        background: #fff;
         border-radius: 10px;
         padding: 20px;
-        width: 30%;
-        min-width: 280px;
-        text-align: center;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
         cursor: pointer;
       }
       .item:hover {
-        transform: scale(1.05);
+        transform: translateY(-5px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       }
-      .highlight {
-        border: 2px solid #ffcc00;
-        box-shadow: 0px 4px 20px rgba(255, 204, 0, 0.8);
+      .item h2 {
+        margin-top: 0;
       }
       .carousel {
         display: flex;
         overflow-x: auto;
-        scroll-snap-type: x mandatory;
         gap: 10px;
-        padding: 10px;
+        padding: 10px 0;
       }
       .carousel img {
         width: 80px;
         height: 80px;
         object-fit: cover;
-        border-radius: 10px;
-        scroll-snap-align: center;
+        border-radius: 5px;
         cursor: pointer;
-      }
-      .carousel img:hover {
-        transform: scale(1.2);
       }
       .modal {
         display: none;
@@ -84,17 +91,41 @@
         max-height: 90%;
         border-radius: 10px;
       }
-      .reserved::before {
-        content: "Reserved";
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: rgba(255, 0, 0, 0.8);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-weight: bold;
-        z-index: 10;
+      .ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  width: 75px;
+  height: 75px;
+  pointer-events: none;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 100px;
+  padding: 5px 0;
+  background: #e74c3c;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  right: -25px;
+  top: 15px;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+      /* Optional: Make items with more text span 2 columns on larger screens */
+      @media (min-width: 768px) {
+        .item.wide {
+          grid-column: span 3;
+        }
+      }
+      @media (max-width: 480px) {
+        .carousel img {
+          width: 60px;
+          height: 60px;
+        }
       }
     </style>
     <script>
@@ -110,12 +141,19 @@
   <body>
     <div class="container">
       <h1>Diving Equipment for Sale</h1>
-      <p class="info">Click on any picture enlarge.</p>
+      <p class="info">Click on any picture to enlarge.</p>
 
       <div class="items">
-        <div class="item">
+        <div class="item wide">
           <h2>Kiss Sidewinder</h2>
-          <p>The total hours on the device are unknown since the mainboard of the dive computer was replaced just before purchase. The unit includes a Petrel 2 without HUD. Several additional components were purchased new recently: 3x O2 sensors, DSV, MAV, and ADV. The ADV is currently disabled due to malfunction but may be repairable under warranty. The device was recently used successfully for diving and performed excellently.</p>
+          <p>
+            The total hours on the device are unknown since the mainboard of the
+            dive computer was replaced just before purchase. The unit includes a
+            Petrel 2 without HUD. Several additional components were purchased new
+            recently: 3x O2 sensors, DSV, MAV, and ADV. The ADV is currently disabled
+            due to malfunction but may be repairable under warranty. The device was
+            recently used successfully for diving and performed excellently.
+          </p>
           <p class="price">CHF 5500</p>
           <div class="carousel">
             <img src="Fotos/Sidewinder/sidewinder (1).jpg" onclick="openModal(this.src)" />
@@ -130,27 +168,33 @@
             <img src="Fotos/Sidewinder/sidewinder (10).JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
-        <div class="item">
+        <!-- Example of an item with more text given a bigger space by adding the "wide" class -->
+        <div class="item wide">
           <h2>AP Diving Inspiration XPD</h2>
-          <p>The unit was purchased in early 2019 and has approximately 500 hours of runtime. The last service was conducted in mid-2021, so it is recommended to have the head serviced again as part of the purchase. Price is negotiable.</p>
+          <p>
+            The unit was purchased in early 2019 and has approximately 500 hours of
+            runtime. The last service was conducted in mid-2021, so it is recommended
+            to have the head serviced again as part of the purchase. Price is
+            negotiable.
+          </p>
           <div class="features">
             <h2>Features</h2>
-            <ul style="list-style-type: none;">
-                <li><strong>Handset:</strong> Vision 2020 Full Trimix</li>
-                <li><strong>Battery:</strong> Rechargable Battery pack</li>
-                <li><strong>Harness:</strong> xDeep Tec Steal Backplate (original included)</li>
-                <li><strong>Scrubber Monitor:</strong> Tempstick</li>
-                <li><strong>Counterlungs:</strong> Backmount</li>
-                <li><strong>Modification:</strong> GBox (old housing included)</li>
-                <li><strong>AutoAir:</strong> Removed (included separately)</li>
-                <li><strong>Cylinders:</strong> Three 3L for diluent and oxygen</li>
-                <li><strong>Brackets:</strong> Oxygen cylinders equipped with AP brackets</li>
-                <li><strong>Suit Gas:</strong> Cylinders also equipped with AP brackets (sold separately)</li>
-                <li><strong>Oxygen Sensors:</strong> From July 2024</li>
-                <li><strong>DSV:</strong> Bailout-Valve (needs Service)</li>
-                <li><strong>Condition:</strong> GBox cover has a crack (no functional impact)</li>
+            <ul style="list-style-type: none; padding-left: 0;">
+              <li><strong>Handset:</strong> Vision 2020 Full Trimix</li>
+              <li><strong>Battery:</strong> Rechargable Battery pack</li>
+              <li><strong>Harness:</strong> xDeep Tec Steal Backplate (original included)</li>
+              <li><strong>Scrubber Monitor:</strong> Tempstick</li>
+              <li><strong>Counterlungs:</strong> Backmount</li>
+              <li><strong>Modification:</strong> GBox (old housing included)</li>
+              <li><strong>AutoAir:</strong> Removed (included separately)</li>
+              <li><strong>Cylinders:</strong> Three 3L for diluent and oxygen</li>
+              <li><strong>Brackets:</strong> Oxygen cylinders equipped with AP brackets</li>
+              <li><strong>Suit Gas:</strong> Cylinders also equipped with AP brackets (sold separately)</li>
+              <li><strong>Oxygen Sensors:</strong> From July 2024</li>
+              <li><strong>DSV:</strong> Bailout-Valve (needs Service)</li>
+              <li><strong>Condition:</strong> GBox cover has a crack (no functional impact)</li>
             </ul>
-        </div>
+          </div>
           <p class="price">CHF 5500</p>
           <div class="carousel">
             <img src="Fotos/Inspiration/inspiration.JPEG" onclick="openModal(this.src)" />
@@ -174,14 +218,18 @@
             <img src="Fotos/Inspiration/inspiration (20).JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
-        <div class="item">
-          <h2> Seacraft Future 1000</h2>
-          <p>Purchased in 2021, with only a few hours of use. Has some scratches on the tube. Comes fully equipped with:
-            <ul style="list-style-type: none;">
-              <li>ENC3 Navigation System</li>
-              <li>Power Converter</li>
-              <li>E/O Cord for heating systems and lights</li>
-              <li>Seacraft SLS Lights</li>
+        <!-- The rest of your items remain the same -->
+        <div class="item wide">
+          <h2>Seacraft Future 1000</h2>
+          <p>
+            Purchased in 2021, with only a few hours of use. Has some scratches on the
+            tube. Comes fully equipped with:
+          </p>
+          <ul style="list-style-type: none; padding-left: 0;">
+            <li>ENC3 Navigation System</li>
+            <li>Power Converter</li>
+            <li>E/O Cord for heating systems and lights</li>
+            <li>Seacraft SLS Lights</li>
           </ul>
           <p class="price">CHF 8500</p>
           <div class="carousel">
@@ -208,8 +256,10 @@
         </div>
         <div class="item">
           <h2>Stealth 2.0 Tec</h2>
-          <p><strong>Manufacturer:</strong> xDeep</p>
-          <p><strong>Remarks:</strong> incl. expandable Pouch</p>
+          <p>
+            <strong>Manufacturer:</strong> xDeep<br />
+            <strong>Remarks:</strong> incl. expandable Pouch
+          </p>
           <p class="price">CHF 350</p>
           <div class="carousel">
             <img src="Fotos/xdeep.JPEG" onclick="openModal(this.src)" />
@@ -219,8 +269,10 @@
         </div>
         <div class="item">
           <h2>Dry Suit 450K</h2>
-          <p><strong>Manufacturer:</strong> Rofos</p>
-          <p><strong>Remarks:</strong> New! From June 2024. Size: XXL Man Short, inkl. Pee Valve</p>
+          <p>
+            <strong>Manufacturer:</strong> Rofos<br />
+            <strong>Remarks:</strong> New! From June 2024. Size: XXL Man Short, inkl. Pee Valve
+          </p>
           <p class="price">CHF 1600</p>
           <div class="carousel">
             <img src="Fotos/rofos (1).JPEG" onclick="openModal(this.src)" />
@@ -234,8 +286,10 @@
         </div>
         <div class="item">
           <h2>BZ 400 Extreme Heated Suit</h2>
-          <p><strong>Manufacturer:</strong> Santi</p>
-          <p><strong>Remarks:</strong> Size XLS</p>
+          <p>
+            <strong>Manufacturer:</strong> Santi<br />
+            <strong>Remarks:</strong> Size XLS
+          </p>
           <p class="price">CHF 475</p>
           <div class="carousel">
             <img src="Fotos/santisuit (1).JPEG" onclick="openModal(this.src)" />
@@ -248,8 +302,10 @@
         </div>
         <div class="item">
           <h2>Heated Gloves</h2>
-          <p><strong>Manufacturer:</strong> Santi</p>
-          <p><strong>Remarks:</strong> Size L</p>
+          <p>
+            <strong>Manufacturer:</strong> Santi<br />
+            <strong>Remarks:</strong> Size L
+          </p>
           <p class="price">CHF 100</p>
           <div class="carousel">
             <img src="Fotos/santihand.JPEG" onclick="openModal(this.src)" />
@@ -257,8 +313,10 @@
         </div>
         <div class="item">
           <h2>Thermovalve 303</h2>
-          <p><strong>Manufacturer:</strong> Santi</p>
-          <p><strong>Remarks:</strong> Apeks, new from June 2024</p>
+          <p>
+            <strong>Manufacturer:</strong> Santi<br />
+            <strong>Remarks:</strong> Apeks, new from June 2024
+          </p>
           <p class="price">CHF 240</p>
           <div class="carousel">
             <img src="Fotos/santi303.JPEG" onclick="openModal(this.src)" />
@@ -267,8 +325,10 @@
         </div>
         <div class="item">
           <h2>Thermovalve Standard</h2>
-          <p><strong>Manufacturer:</strong> Santi</p>
-          <p><strong>Remarks:</strong> Apeks, Scaleo heating not working, due to cable defect</p>
+          <p>
+            <strong>Manufacturer:</strong> Santi<br />
+            <strong>Remarks:</strong> Apeks, Scaleo heating not working, due to cable defect
+          </p>
           <p class="price">CHF 50</p>
           <div class="carousel">
             <img src="Fotos/santiheizdefekt (1).JPEG" onclick="openModal(this.src)" />
@@ -277,8 +337,10 @@
         </div>
         <div class="item">
           <h2>Battery Tank 23.8Ah</h2>
-          <p><strong>Manufacturer:</strong> Uwavis</p>
-          <p><strong>Remarks:</strong> incl. Charger</p>
+          <p>
+            <strong>Manufacturer:</strong> Uwavis<br />
+            <strong>Remarks:</strong> incl. Charger
+          </p>
           <p class="price">CHF 450</p>
           <div class="carousel">
             <img src="Fotos/akku (1).JPEG" onclick="openModal(this.src)" />
@@ -295,8 +357,10 @@
         </div>
         <div class="item">
           <h2>Glove System</h2>
-          <p><strong>Manufacturer:</strong> Ted's</p>
-          <p><strong>Remarks:</strong> New! June 2024</p>
+          <p>
+            <strong>Manufacturer:</strong> Ted's<br />
+            <strong>Remarks:</strong> New! June 2024
+          </p>
           <p class="price">CHF 160</p>
           <div class="carousel">
             <img src="Fotos/ted (1).JPEG" onclick="openModal(this.src)" />
@@ -322,7 +386,9 @@
         </div>
         <div class="item">
           <h2>Reel 150m</h2>
-          <p><strong>Manufacturer:</strong> Divesoft</p>
+          <p>
+            <strong>Manufacturer:</strong> Divesoft
+          </p>
           <p class="price">CHF 75</p>
           <div class="carousel">
             <img src="Fotos/reeldivesoft (2).JPEG" onclick="openModal(this.src)" />
@@ -331,12 +397,14 @@
         </div>
         <div class="item">
           <h2>Spools</h2>
-          <p><ul style="list-style-type: none;">
-            <li><strong>2x</strong> Light Monkey 30m</li>
-            <li><strong>1x</strong> Light Monkey 50m</li>
-            <li><strong>1x</strong> No-Name 7m</li>
-            <li><strong>1x</strong> No-Name 30m</li>
-        </ul></p>
+          <p>
+            <ul style="list-style-type: none; padding-left: 0;">
+              <li><strong>2x</strong> Light Monkey 30m</li>
+              <li><strong>1x</strong> Light Monkey 50m</li>
+              <li><strong>1x</strong> No-Name 7m</li>
+              <li><strong>1x</strong> No-Name 30m</li>
+            </ul>
+          </p>
           <p class="price">CHF 30 (CHF15 for the 7m)</p>
           <div class="carousel">
             <img src="Fotos/spools.JPEG" onclick="openModal(this.src)" />
@@ -351,7 +419,9 @@
         </div>
         <div class="item">
           <h2>Compass SK-8</h2>
-          <p><strong>Manufacturer:</strong> Suunto</p>
+          <p>
+            <strong>Manufacturer:</strong> Suunto
+          </p>
           <p class="price">CHF 40</p>
           <div class="carousel">
             <img src="Fotos/kompass.JPEG" onclick="openModal(this.src)" />
@@ -359,8 +429,10 @@
         </div>
         <div class="item">
           <h2>Kondoms InView Extra 32mm</h2>
-          <p><strong>Manufacturer:</strong> Hollister</p>
-          <p><strong>Remarks:</strong> 24 pieces</p>
+          <p>
+            <strong>Manufacturer:</strong> Hollister<br />
+            <strong>Remarks:</strong> 24 pieces
+          </p>
           <p class="price">CHF 70</p>
           <div class="carousel">
             <img src="Fotos/kondome (1).JPEG" onclick="openModal(this.src)" />
@@ -369,7 +441,9 @@
         </div>
         <div class="item">
           <h2>Helmet Mount</h2>
-          <p><strong>Manufacturer:</strong> Razor</p>
+          <p>
+            <strong>Manufacturer:</strong> Razor
+          </p>
           <p class="price">CHF 25</p>
           <div class="carousel">
             <img src="Fotos/razerhelm.JPEG" onclick="openModal(this.src)" />
@@ -378,8 +452,11 @@
         </div>
         <div class="item reserved">
           <h2>Ultrasonic Cleaning Bath</h2>
-          <p><strong>Manufacturer:</strong> Emag</p>
-          <p><strong>Remarks:</strong> Emmi-20HC, incl. cleaning liquid and regulator service tools</p>
+          <div class="ribbon"><span>Reserved</span></div>
+          <p>
+            <strong>Manufacturer:</strong> Emag<br />
+            <strong>Remarks:</strong> Emmi-20HC, incl. cleaning liquid and regulator service tools
+          </p>
           <p class="price">CHF 175</p>
           <div class="carousel">
             <img src="Fotos/servicekit (1).JPEG" onclick="openModal(this.src)" />
@@ -392,8 +469,10 @@
         </div>
         <div class="item">
           <h2>Main Lamp</h2>
-          <p><strong>Manufacturer:</strong> Tilly Tec</p>
-          <p><strong>Remarks:</strong> From 2018, incl. Upgrades, new batteries and charger. Over 4h Burn Time. LED Module:  2000-70000-5, 5500 Kelvin </p>
+          <p>
+            <strong>Manufacturer:</strong> Tilly Tec<br />
+            <strong>Remarks:</strong> From 2018, incl. Upgrades, new batteries and charger. Over 4h Burn Time. LED Module: 2000-70000-5, 5500 Kelvin
+          </p>
           <p class="price">CHF 450</p>
           <div class="carousel">
             <img src="Fotos/tillmain (1).JPEG" onclick="openModal(this.src)" />
@@ -405,7 +484,9 @@
         </div>
         <div class="item">
           <h2>2x Backup Lamp</h2>
-          <p><strong>Manufacturer:</strong> Tilly Tec</p>
+          <p>
+            <strong>Manufacturer:</strong> Tilly Tec
+          </p>
           <p class="price">CHF 120 each</p>
           <div class="carousel">
             <img src="Fotos/tillybackup (1).JPEG" onclick="openModal(this.src)" />
@@ -414,7 +495,9 @@
         </div>
         <div class="item">
           <h2>Video Lamp Nova 720 Wide</h2>
-          <p><strong>Manufacturer:</strong> Scubapro</p>
+          <p>
+            <strong>Manufacturer:</strong> Scubapro
+          </p>
           <p class="price">CHF 60</p>
           <div class="carousel">
             <img src="Fotos/nova (3).JPEG" onclick="openModal(this.src)" />
@@ -422,8 +505,9 @@
             <img src="Fotos/nova (1).JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
-        <div class="item reserved">
+        <div class="item">
           <h2>Regulator Suit Gas</h2>
+          <div class="ribbon"><span>Reserved</span></div>
           <p class="price">CHF 25</p>
           <div class="carousel">
             <img src="Fotos/anzuggas.JPEG" onclick="openModal(this.src)" />
@@ -454,11 +538,12 @@
           <p class="price">CHF 50</p>
           <div class="carousel">
             <img src="Fotos/Tanks/12lkurz.JPEG" onclick="openModal(this.src)" />
-            <img  src="Fotos/Tanks/12lkurz (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/12lkurz (2).JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
-        <div class="item reserved">
+        <div class="item">
           <h2>12L Steel Sidemount</h2>
+          <div class="ribbon"><span>Reserved</span></div>
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 250 for both</p>
           <div class="carousel">
@@ -477,15 +562,17 @@
         </div>
         <div class="item reserved">
           <h2>40 Cuft</h2>
+          <div class="ribbon"><span>Reserved</span></div>
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 110</p>
           <div class="carousel">
             <img src="Fotos/Tanks/40cuft.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Tanks/40cuft (2).JPEG" onclick="openModal(this.src)"/>
+            <img src="Fotos/Tanks/40cuft (2).JPEG" onclick="openModal(this.src)" />
           </div>
         </div>
         <div class="item reserved">
           <h2>2L Argon bottle</h2>
+          <div class="ribbon"><span>Reserved</span></div>
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 45</p>
           <div class="carousel">
