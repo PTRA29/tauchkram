@@ -83,6 +83,18 @@
         max-height: 90%;
         border-radius: 10px;
       }
+      .reserved::before {
+        content: "Reserved";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(255, 0, 0, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        display: block;
+      }
     </style>
     <script>
       function goToPage(url) {
@@ -100,7 +112,7 @@
       <p class="info">Click on any picture enlarge.</p>
 
       <div class="items">
-        <div class="item">
+        <div class="item reserved">
           <h2>Kiss Sidewinder</h2>
           <p>The total hours on the device are unknown since the mainboard of the dive computer was replaced just before purchase. The unit includes a Petrel 2 without HUD. Several additional components were purchased new recently: 3x O2 sensors, DSV, MAV, and ADV. The ADV is currently disabled due to malfunction but may be repairable under warranty. The device was recently used successfully for diving and performed excellently.</p>
           <p class="price">CHF 5500</p>
@@ -330,7 +342,7 @@
           </div>
         </div>
         <div class="item">
-          <h2>Flag Steal</h2>
+          <h2>Flag Steel</h2>
           <p class="price">CHF 75</p>
           <div class="carousel">
             <img src="Fotos/flagge.JPEG" onclick="openModal(this.src)" />
