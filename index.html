@@ -17,12 +17,14 @@
       * {
         box-sizing: border-box;
       }
+      /* Solarized Dark color scheme with improved readability */
       body {
         margin: 0;
         font-family: 'Roboto', sans-serif;
-        background: #f0f0f0;
-        color: #333;
-        line-height: 1.6;
+        background: #002b36; /* Base03 */
+        color: #839496;      /* Base0 */
+        font-size: 16px;
+        line-height: 1.8;
       }
       .container {
         max-width: 1200px;
@@ -33,13 +35,14 @@
         text-align: center;
         margin-top: 20px;
         font-size: 2em;
+        color: #93a1a1; /* Base1 */
       }
       p.info {
         text-align: center;
         font-size: 1.2em;
         margin-bottom: 20px;
       }
-      /* Using CSS Grid for a more flexible layout */
+      /* Using CSS Grid for a flexible layout */
       .items {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -47,19 +50,34 @@
       }
       .item {
         position: relative;
-        background: #fff;
+        background: #073642; /* Base02 */
         border-radius: 10px;
         padding: 20px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 8px rgba(0, 43, 54, 0.7);
         transition: transform 0.2s, box-shadow 0.2s;
         cursor: pointer;
+        color: #839496;
       }
       .item:hover {
         transform: translateY(-5px);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 16px rgba(0, 43, 54, 0.9);
       }
+      /* Item title in Solarized blue */
       .item h2 {
         margin-top: 0;
+        color: #268bd2;
+      }
+      /* Set item paragraphs & list items (except price) in a slightly brighter Solarized color */
+      .item p:not(.price),
+      .item li {
+        color: #93a1a1;
+      }
+      /* Price highlighted with larger text and Solarized yellow */
+      .price {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: #b58900;
+        margin-top: 10px;
       }
       .carousel {
         display: flex;
@@ -91,35 +109,41 @@
         max-height: 90%;
         border-radius: 10px;
       }
+      /* Ribbon for reserved items using a gradient with adjusted positioning */
       .ribbon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  overflow: hidden;
-  width: 75px;
-  height: 75px;
-  pointer-events: none;
-}
-.ribbon span {
-  position: absolute;
-  display: block;
-  width: 100px;
-  padding: 5px 0;
-  background: #e74c3c;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-  right: -25px;
-  top: 15px;
-  transform: rotate(45deg);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
-}
-      /* Optional: Make items with more text span 2 columns on larger screens */
-      @media (min-width: 768px) {
-        .item.wide {
-          grid-column: span 3;
-        }
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        overflow: hidden;
+        width: 80px;
+        height: 80px;
+        pointer-events: none;
+      }
+      .ribbon span {
+        position: absolute;
+        display: block;
+        width: 100px;
+        padding: 5px 0;
+        background: linear-gradient(45deg, #dc322f, #d33682); /* Gradient from Solarized red to magenta */
+        color: #fdf6e3; /* Light text for contrast */
+        font-weight: bold;
+        text-align: center;
+        right: -20px;
+        top: 20px;
+        transform: rotate(45deg);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+      }
+      /* Features header and strong elements with extra Solarized colors */
+      .features h2 {
+        color: #2aa198; /* Solarized cyan */
+      }
+      .features strong {
+        color: #2aa198;
+      }
+      /* Wide items spanning the full grid width */
+      .item.wide {
+        grid-column: 1 / -1;
       }
       @media (max-width: 480px) {
         .carousel img {
