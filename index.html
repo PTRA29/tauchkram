@@ -92,6 +92,7 @@
         border-radius: 5px;
         cursor: pointer;
       }
+      /* Modal with navigation arrows */
       .modal {
         display: none;
         position: fixed;
@@ -108,6 +109,32 @@
         max-width: 90%;
         max-height: 90%;
         border-radius: 10px;
+      }
+      /* Navigation arrows & close button in the modal */
+      .modal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 3em;
+        color: #fdf6e3;
+        cursor: pointer;
+        padding: 10px;
+        user-select: none;
+      }
+      #modal-prev {
+        left: 10px;
+      }
+      #modal-next {
+        right: 10px;
+      }
+      #modal-close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 2em;
+        color: #fdf6e3;
+        cursor: pointer;
+        z-index: 1100;
       }
       /* Ribbon for reserved items using a gradient with adjusted positioning */
       .ribbon {
@@ -153,12 +180,35 @@
       }
     </style>
     <script>
+      let currentImages = [];
+      let currentIndex = 0;
+      function openModal(imgElem) {
+        // Get all images in the clicked carousel
+        const carousel = imgElem.closest('.carousel');
+        currentImages = Array.from(carousel.querySelectorAll('img'));
+        currentIndex = currentImages.indexOf(imgElem);
+        document.getElementById('modal-img').src = imgElem.src;
+        document.getElementById('modal').style.display = 'flex';
+      }
+      function nextImage(event) {
+        event.stopPropagation();
+        if (currentImages.length > 0) {
+          currentIndex = (currentIndex + 1) % currentImages.length;
+          document.getElementById('modal-img').src = currentImages[currentIndex].src;
+        }
+      }
+      function prevImage(event) {
+        event.stopPropagation();
+        if (currentImages.length > 0) {
+          currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+          document.getElementById('modal-img').src = currentImages[currentIndex].src;
+        }
+      }
+      function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+      }
       function goToPage(url) {
         window.location.href = url;
-      }
-      function openModal(imgSrc) {
-        document.getElementById("modal-img").src = imgSrc;
-        document.getElementById("modal").style.display = "flex";
       }
     </script>
   </head>
@@ -166,7 +216,6 @@
     <div class="container">
       <h1>Diving Equipment for Sale</h1>
       <p class="info">Click on any picture to enlarge.</p>
-
       <div class="items">
         <div class="item wide">
           <h2>Kiss Sidewinder</h2>
@@ -180,16 +229,16 @@
           </p>
           <p class="price">CHF 5500</p>
           <div class="carousel">
-            <img src="Fotos/Sidewinder/sidewinder (1).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (2).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (3).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (4).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (5).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (6).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (7).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (8).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (9).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/Sidewinder/sidewinder (10).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Sidewinder/sidewinder (1).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (2).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (3).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (4).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (5).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (6).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (7).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (8).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (9).jpg" onclick="openModal(this)" />
+            <img src="Fotos/Sidewinder/sidewinder (10).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <!-- Example of an item with more text given a bigger space by adding the "wide" class -->
@@ -221,28 +270,28 @@
           </div>
           <p class="price">CHF 5500</p>
           <div class="carousel">
-            <img src="Fotos/Inspiration/inspiration.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (3).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (4).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (5).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (6).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (7).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (8).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (9).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (10).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (11).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (12).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (13).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (14).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (15).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (16).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (17).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (18).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (19).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Inspiration/inspiration (20).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Inspiration/inspiration.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (3).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (4).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (5).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (6).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (7).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (8).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (9).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (10).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (11).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (12).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (13).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (14).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (15).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (16).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (17).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (18).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (19).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Inspiration/inspiration (20).JPEG" onclick="openModal(this)" />
           </div>
         </div>
-        <!-- The rest of your items remain the same -->
+        <!-- The rest of your items remain unchanged; reserved items include the ribbon markup -->
         <div class="item wide">
           <h2>Seacraft Future 1000</h2>
           <p>
@@ -257,15 +306,15 @@
           </ul>
           <p class="price">CHF 8500</p>
           <div class="carousel">
-            <img src="Fotos/SeacraftFuture/seacraft (1).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/SeacraftFuture/seacraft (2).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/SeacraftFuture/seacraft (3).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/SeacraftFuture/seacraft (4).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/SeacraftFuture/seacraft (5).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/SeacraftFuture/seacraft (6).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/SeacraftFuture/seacraft (7).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/SeacraftFuture/seacraft (8).jpg" onclick="openModal(this.src)" />
-            <img src="Fotos/SeacraftFuture/seacraft (9).jpg" onclick="openModal(this.src)" />
+            <img src="Fotos/SeacraftFuture/seacraft (1).jpg" onclick="openModal(this)" />
+            <img src="Fotos/SeacraftFuture/seacraft (2).jpg" onclick="openModal(this)" />
+            <img src="Fotos/SeacraftFuture/seacraft (3).jpg" onclick="openModal(this)" />
+            <img src="Fotos/SeacraftFuture/seacraft (4).jpg" onclick="openModal(this)" />
+            <img src="Fotos/SeacraftFuture/seacraft (5).jpg" onclick="openModal(this)" />
+            <img src="Fotos/SeacraftFuture/seacraft (6).jpg" onclick="openModal(this)" />
+            <img src="Fotos/SeacraftFuture/seacraft (7).jpg" onclick="openModal(this)" />
+            <img src="Fotos/SeacraftFuture/seacraft (8).jpg" onclick="openModal(this)" />
+            <img src="Fotos/SeacraftFuture/seacraft (9).jpg" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -273,9 +322,9 @@
           <p><strong>Manufacturer:</strong> Heinrichs Weikamp</p>
           <p class="price">CHF 400</p>
           <div class="carousel">
-            <img src="Fotos/ostc (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/ostc (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/ostc (3).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/ostc (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/ostc (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/ostc (3).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -286,9 +335,9 @@
           </p>
           <p class="price">CHF 350</p>
           <div class="carousel">
-            <img src="Fotos/xdeep.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/xdeep (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/xdeep (3).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/xdeep.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/xdeep (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/xdeep (3).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -299,13 +348,13 @@
           </p>
           <p class="price">CHF 1600</p>
           <div class="carousel">
-            <img src="Fotos/rofos (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/rofos (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/rofos (3).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/rofos (4).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/rofos (5).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/rofos (6).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/rofos (7).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/rofos (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/rofos (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/rofos (3).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/rofos (4).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/rofos (5).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/rofos (6).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/rofos (7).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -316,12 +365,12 @@
           </p>
           <p class="price">CHF 475</p>
           <div class="carousel">
-            <img src="Fotos/santisuit (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/santisuit (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/santisuit (3).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/santisuit (4).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/santisuit (5).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/santisuit (6).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/santisuit (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/santisuit (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/santisuit (3).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/santisuit (4).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/santisuit (5).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/santisuit (6).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -332,7 +381,7 @@
           </p>
           <p class="price">CHF 100</p>
           <div class="carousel">
-            <img src="Fotos/santihand.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/santihand.JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -343,8 +392,8 @@
           </p>
           <p class="price">CHF 240</p>
           <div class="carousel">
-            <img src="Fotos/santi303.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/santi303 (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/santi303.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/santi303 (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -355,8 +404,8 @@
           </p>
           <p class="price">CHF 50</p>
           <div class="carousel">
-            <img src="Fotos/santiheizdefekt (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/santiheizdefekt (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/santiheizdefekt (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/santiheizdefekt (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -367,8 +416,8 @@
           </p>
           <p class="price">CHF 450</p>
           <div class="carousel">
-            <img src="Fotos/akku (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/akku (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/akku (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/akku (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -376,7 +425,7 @@
           <p><strong>Manufacturer:</strong> Kubi</p>
           <p class="price">CHF 45</p>
           <div class="carousel">
-            <img src="Fotos/kubi.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/kubi.JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -387,8 +436,8 @@
           </p>
           <p class="price">CHF 160</p>
           <div class="carousel">
-            <img src="Fotos/ted (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/ted (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/ted (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/ted (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -396,16 +445,16 @@
           <p><strong>Manufacturer:</strong> AP Diving</p>
           <p class="price">CHF 125</p>
           <div class="carousel">
-            <img src="Fotos/boje (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/boje (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/boje (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/boje (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
           <h2>Reel 150m</h2>
           <p class="price">CHF 35</p>
           <div class="carousel">
-            <img src="Fotos/reel (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/reel (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/reel (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/reel (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -415,8 +464,8 @@
           </p>
           <p class="price">CHF 75</p>
           <div class="carousel">
-            <img src="Fotos/reeldivesoft (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/reeldivesoft (3).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/reeldivesoft (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/reeldivesoft (3).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -431,14 +480,14 @@
           </p>
           <p class="price">CHF 30 (CHF15 for the 7m)</p>
           <div class="carousel">
-            <img src="Fotos/spools.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/spools.JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
           <h2>Flag Steel</h2>
           <p class="price">CHF 75</p>
           <div class="carousel">
-            <img src="Fotos/flagge.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/flagge.JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -448,7 +497,7 @@
           </p>
           <p class="price">CHF 40</p>
           <div class="carousel">
-            <img src="Fotos/kompass.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/kompass.JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -459,8 +508,8 @@
           </p>
           <p class="price">CHF 70</p>
           <div class="carousel">
-            <img src="Fotos/kondome (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/kondome (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/kondome (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/kondome (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -470,8 +519,8 @@
           </p>
           <p class="price">CHF 25</p>
           <div class="carousel">
-            <img src="Fotos/razerhelm.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/razerhelm (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/razerhelm.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/razerhelm (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item reserved">
@@ -483,12 +532,12 @@
           </p>
           <p class="price">CHF 175</p>
           <div class="carousel">
-            <img src="Fotos/servicekit (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/servicekit (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/servicekit (3).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/servicekit (4).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/servicekit (5).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/servicekit (6).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/servicekit (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/servicekit (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/servicekit (3).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/servicekit (4).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/servicekit (5).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/servicekit (6).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -499,11 +548,11 @@
           </p>
           <p class="price">CHF 450</p>
           <div class="carousel">
-            <img src="Fotos/tillmain (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/tillmain (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/tillmain (3).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/tillmain (4).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/tillmain (5).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/tillmain (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/tillmain (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/tillmain (3).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/tillmain (4).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/tillmain (5).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -513,8 +562,8 @@
           </p>
           <p class="price">CHF 120 each</p>
           <div class="carousel">
-            <img src="Fotos/tillybackup (1).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/tillybackup (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/tillybackup (1).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/tillybackup (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -524,9 +573,9 @@
           </p>
           <p class="price">CHF 60</p>
           <div class="carousel">
-            <img src="Fotos/nova (3).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/nova (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/nova (1).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/nova (3).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/nova (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/nova (1).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -534,8 +583,8 @@
           <div class="ribbon"><span>Reserved</span></div>
           <p class="price">CHF 25</p>
           <div class="carousel">
-            <img src="Fotos/anzuggas.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/anzuggas (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/anzuggas.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/anzuggas (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -543,8 +592,8 @@
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 290</p>
           <div class="carousel">
-            <img src="Fotos/Tanks/carbon.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Tanks/carbon (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/carbon.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Tanks/carbon (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -552,8 +601,8 @@
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 150</p>
           <div class="carousel">
-            <img src="Fotos/Tanks/80cuft.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Tanks/80cuft (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/80cuft.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Tanks/80cuft (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -561,8 +610,8 @@
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 50</p>
           <div class="carousel">
-            <img src="Fotos/Tanks/12lkurz.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Tanks/12lkurz (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/12lkurz.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Tanks/12lkurz (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -571,9 +620,9 @@
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 250 for both</p>
           <div class="carousel">
-            <img src="Fotos/Tanks/12l.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Tanks/12l (2).JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Tanks/12l (3).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/12l.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Tanks/12l (2).JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Tanks/12l (3).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -581,7 +630,7 @@
           <p><strong>Remarks:</strong> New! Faber light</p>
           <p class="price">CHF 400 for both</p>
           <div class="carousel">
-            <img src="Fotos/Tanks/7l.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/7l.JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item reserved">
@@ -590,8 +639,8 @@
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 110</p>
           <div class="carousel">
-            <img src="Fotos/Tanks/40cuft.JPEG" onclick="openModal(this.src)" />
-            <img src="Fotos/Tanks/40cuft (2).JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/40cuft.JPEG" onclick="openModal(this)" />
+            <img src="Fotos/Tanks/40cuft (2).JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item reserved">
@@ -600,7 +649,7 @@
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 45</p>
           <div class="carousel">
-            <img src="Fotos/Tanks/2l.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/2l.JPEG" onclick="openModal(this)" />
           </div>
         </div>
         <div class="item">
@@ -608,13 +657,17 @@
           <p><strong>Remarks:</strong> without testing</p>
           <p class="price">CHF 45</p>
           <div class="carousel">
-            <img src="Fotos/Tanks/15.JPEG" onclick="openModal(this.src)" />
+            <img src="Fotos/Tanks/15.JPEG" onclick="openModal(this)" />
           </div>
         </div>
       </div>
     </div>
-    <div id="modal" class="modal" onclick="this.style.display='none'">
+    <!-- Modal with navigation arrows and close button -->
+    <div id="modal" class="modal" onclick="closeModal()">
+      <span id="modal-close" onclick="closeModal(); event.stopPropagation()">&times;</span>
       <img id="modal-img" src="" />
+      <div id="modal-prev" class="modal-nav" onclick="prevImage(event)">&#10094;</div>
+      <div id="modal-next" class="modal-nav" onclick="nextImage(event)">&#10095;</div>
     </div>
   </body>
 </html>
